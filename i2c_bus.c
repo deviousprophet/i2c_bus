@@ -7,6 +7,14 @@
 #include "esp_log.h"
 #include "i2c_bus.h"
 
+#include "esp_idf_version.h"
+
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
+#ifndef portTICK_RATE_MS
+#define portTICK_RATE_MS portTICK_PERIOD_MS
+#endif
+#endif
+
 #define I2C_ACK_CHECK_EN            0x1 /*!< I2C master will check ack from slave*/
 #define I2C_ACK_CHECK_DIS           0x0 /*!< I2C master will not check ack from slave */
 #define I2C_BUS_FLG_DEFAULT         (0)
